@@ -60,7 +60,7 @@ app.post("/post",(req,res)=>{
 })
 
 
-app.get("/", (req,res)=>{
+app.get("/user", (req,res)=>{
     try{
         postModel.find().sort({_id:-1}).then((allData)=>{
             
