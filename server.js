@@ -6,7 +6,7 @@ const postModel = require("./model/post")
 const app=express()
 const fs=require("fs")
 const cors = require("cors");
-const url="http://localhost:3000";
+// const url="http://localhost:3000";
 
 //middleware
 app.use(cors());
