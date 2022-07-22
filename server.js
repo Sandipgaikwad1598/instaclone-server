@@ -34,41 +34,53 @@ mongoose.connect("mongodb+srv://sandip12:Sandip@12@sandip.oeloehn.mongodb.net/in
     console.log(err);
 })
 
-
-app.post("/post",(req,res)=>{
-    upload(req,res,(err)=>{
-        if(err){
-            console.log(err)
-        }else{
-            const newImage=new postModel({
-                author:req.body.name,
-                location:req.body.location,
-                description:req.body.description,
-                date:req.body.date,
-                image:{
-                    data:fs.readFileSync("uploads/" +req.file.filename) ,
-                    contentType:"image/png"
-                }
-            })
-            newImage.save().then(()=>{
-                res.send("success")
-            }).catch((err)=>{
-                console.log(err)
-            })
-        }
-    })
+app.post("/post", (req, res)=> {
+    uploadModel.create(req.body).then((data)=> {
+        res.status(200).send(data)
+})
 })
 
 
-app.get("/", (req,res)=>{
-    try{
-        postModel.find().sort({_id:-1}).then((allData)=>{
+// app.post("/post",(req,res)=>{
+//     upload(req,res,(err)=>{
+//         if(err){
+//             console.log(err)
+//         }else{
+//             const newImage=new postModel({
+//                 author:req.body.name,
+//                 location:req.body.location,
+//                 description:req.body.description,
+//                 date:req.body.date,
+//                 image:{
+//                     data:fs.readFileSync("uploads/" +req.file.filename) ,
+//                     contentType:"image/png"
+//                 }
+//             })
+//             newImage.save().then(()=>{
+//                 res.send("success")
+//             }).catch((err)=>{
+//                 console.log(err)
+//             })
+//         }
+//     })
+// })
+
+
+// app.get("/", (req,res)=>{
+//     try{
+//         postModel.find().sort({_id:-1}).then((allData)=>{
             
-            res.status(200).send(allData)
-        })
-    }catch(err){
-        console.log(err)
-    }
+//             res.status(200).send(allData)
+//         })
+//     }catch(err){
+//         console.log(err)
+//     }
+// })
+
+app.get("/images", (req, res)=> {
+    uploadModel.find().then((imageData)=> {
+        res.status(200).send({images: imageData});
+    })
 })
 app.listen(port, function() {
     console.log("Server started.......on",port);
