@@ -28,7 +28,7 @@ const upload=multer({
 
 const port = process.env.PORT || 3001;
 
-mongoose.connect("mongodb://localhost/inst",()=>{
+mongoose.connect("mongodb+srv://sandip12:Sandip@12@sandip.oeloehn.mongodb.net/instaclone?retryWrites=true&w=majority/inst",()=>{
     console.log("coonect to db...");
 },(err)=>{
     console.log(err);
