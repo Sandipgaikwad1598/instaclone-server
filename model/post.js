@@ -2,9 +2,8 @@ const mongoose =require("mongoose")
 
 const postSchema=new mongoose.Schema({
     image:{
-        type:String,
-        require:true
-       
+        data:Buffer,
+        contentType:String
     },
     author:{
         type:String,
@@ -22,11 +21,15 @@ const postSchema=new mongoose.Schema({
         type:String,
         require:true
     },
-     likes:{
-        type:String,
+    like:{
+        type:Number,
+        default:24
     }
 
 })
+
+
+
 const postModel=mongoose.model("post",postSchema)
 
 module.exports=postModel
