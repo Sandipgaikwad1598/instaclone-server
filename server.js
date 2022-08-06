@@ -27,14 +27,7 @@ const upload=multer({
 }).single("testimage")
 
 
-
-
-// mongoose.connect("mongodb+srv://Balu_Kandru:Balu1998@instagram.anvjmni.mongodb.net/datainit?retryWrites=true&w=majority",()=>{    console.log("connected to db")
-// },(err)=>{
-//     console.log(err)
-// })
-
-
+//mongodb connection
 mongoose.connect("mongodb+srv://Sandip12:sandip12@instaclone.d7yn26d.mongodb.net/instaclone?retryWrites=true&w=majority",()=>{
     console.log("coonect to db...");
 },(err)=>{
